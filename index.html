@@ -53,32 +53,37 @@
             background-color: #fff; /* Default background for cells */
         }
         th { /* Header row sticky */
-            background-color: #f2f7fd;
+            background-color: #f2f7fd; /* Header background */
             color: #2c3e50;
             font-weight: bold;
             text-align: center;
             position: sticky;
             top: 0;
-            z-index: 2; /* Higher z-index for header */
+            z-index: 2; /* Header row above first column */
         }
         td:first-child { /* Store name column sticky */
             text-align: left;
             font-weight: bold;
-            background-color: #f9f9f9;
+            background-color: #f9f9f9 !important; /* First column background - !important for emphasis */
             vertical-align: middle;
             position: sticky;
             left: 0;
-            z-index: 1; /* Lower z-index than header */
+            z-index: 1; /* First column below header */
              border-right-width: 2px; /* Slightly stronger border */
         }
-         td.indicator-column { /* Style for 指標 column - NO LONGER STICKY */
+        th:first-child { /* Top-left corner cell */
+            position: sticky;
+            top: 0;
+            left: 0;
+            z-index: 3;      /* Highest: stays above row header and column header */
+            background-color: #f2f7fd !important; /* Match header background - !important for emphasis */
+            border-right-width: 2px; /* Match first column's right border */
+        }
+         td.indicator-column { /* Style for 指標 column - NOT STICKY */
             text-align: center;
             font-style: italic;
-            background-color: #f9f9f9; /* Keep background similar */
+            background-color: #f9f9f9; /* Match first col background */
             font-weight: bold;
-            /* position: sticky; REMOVED */
-            /* left: ...; REMOVED */
-            /* z-index: 1; REMOVED */
         }
 
         .total-column {
@@ -119,7 +124,7 @@
             border: none;
             padding: 5px;
             border-bottom: 1px solid #eee;
-            background-color: transparent; /* Override default white */
+            background-color: transparent; /* Override default white for summary table */
         }
         .summary-table td.number {
             text-align: right;
