@@ -50,48 +50,42 @@
             padding: 6px;
             text-align: right;
             border: 1px solid #ddd;
+            background-color: #fff; /* Default background for cells */
         }
-        th {
+        th { /* Header row sticky */
             background-color: #f2f7fd;
             color: #2c3e50;
             font-weight: bold;
             text-align: center;
             position: sticky;
             top: 0;
-            z-index: 1; /* Ensure header stays above store name */
+            z-index: 2; /* Higher z-index for header */
         }
-        td:first-child { /* Style for store name */
+        td:first-child { /* Store name column sticky */
             text-align: left;
             font-weight: bold;
             background-color: #f9f9f9;
-            vertical-align: middle; /* Align rowspan cell vertically */
-            position: sticky; /* Make store name sticky */
-            left: 0; /* Stick to the left */
-            z-index: 1; /* Ensure store name stays above data */
+            vertical-align: middle;
+            position: sticky;
+            left: 0;
+            z-index: 1; /* Lower z-index than header */
+             border-right-width: 2px; /* Slightly stronger border */
         }
-         td.indicator-column { /* Style for 指標 column */
+         td.indicator-column { /* Style for 指標 column - NO LONGER STICKY */
             text-align: center;
             font-style: italic;
-            background-color: #f9f9f9;
+            background-color: #f9f9f9; /* Keep background similar */
             font-weight: bold;
-             position: sticky; /* Make indicator sticky */
-             left: 100px; /* Adjust based on first column width if needed, crude sticking */
-             z-index: 1; /* Ensure indicator stays above data */
+            /* position: sticky; REMOVED */
+            /* left: ...; REMOVED */
+            /* z-index: 1; REMOVED */
         }
-        /* Adjust sticky left position based on typical first column width */
-        /* You might need to refine this value */
-        @media (min-width: 768px) { /* Example breakpoint */
-           td.indicator-column {
-                left: 120px;
-           }
-        }
-
 
         .total-column {
             background-color: #edf7ff;
             font-weight: bold;
         }
-        .negative { /* Style for negative numbers */
+        .negative {
             color: #e74c3c;
         }
         .summary-section {
@@ -125,6 +119,7 @@
             border: none;
             padding: 5px;
             border-bottom: 1px solid #eee;
+            background-color: transparent; /* Override default white */
         }
         .summary-table td.number {
             text-align: right;
@@ -181,16 +176,7 @@
             margin-bottom: 5px;
             font-size: 12px;
         }
-        /* Ensure sticky elements have white background */
-        th, td:first-child, td.indicator-column {
-            background-color: #fff;
-        }
-        th { /* Re-apply header background */
-             background-color: #f2f7fd;
-        }
-         td:first-child, td.indicator-column { /* Re-apply specific backgrounds */
-             background-color: #f9f9f9;
-         }
+
     </style>
 </head>
 <body>
@@ -463,7 +449,19 @@
                     <tr>
                         <th>店舗名</th>
                         <th>指標</th>
-                        <th>4月</th> <th>5月</th> <th>6月</th> <th>7月</th> <th>8月</th> <th>9月</th> <th>10月</th><th>11月</th><th>12月</th><th>1月</th> <th>2月</th> <th>3月</th> <th class="total-column">年間合計</th>
+                        <th>4月</th>
+                        <th>5月</th>
+                        <th>6月</th>
+                        <th>7月</th>
+                        <th>8月</th>
+                        <th>9月</th>
+                        <th>10月</th>
+                        <th>11月</th>
+                        <th>12月</th>
+                        <th>1月</th>
+                        <th>2月</th>
+                        <th>3月</th>
+                        <th class="total-column">年間合計</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -623,7 +621,7 @@
                     </tr>
                     <tr>
                         <td class="indicator-column">利益</td>
-                        <td>5,655</td><td>845</td><td>1,946</td><td>3,352</td><td>4,010</td><td>5,093</td><td>6,732</td><td>7,837</td><td>12,330</td><td>6,902</td><td class="positive">2,536</td><td>9,100</td>
+                        <td>5,655</td><td>845</td><td>1,946</td><td>3,352</td><td>4,010</td><td>5,093</td><td>6,732</td><td>7,837</td><td>12,330</td><td>6,902</td><td class="negative">2,536</td><td>9,100</td>
                         <td class="total-column">66,338</td>
                     </tr>
                 </tbody>
